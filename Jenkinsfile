@@ -1,5 +1,7 @@
 node {
-  
+  	tools {
+       	 maven 'maven363'
+    	}
 	stage("Checkout"){
 		git 'git@github.com:devopsepint2021/myProjectjava.git'
 	}
