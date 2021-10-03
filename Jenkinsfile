@@ -1,16 +1,29 @@
-node {
-  	def maven = tool name: "maven363"
-	stage("Checkout"){
-		git 'git@github.com:devopsepint2021/myProjectjava.git'
-	}
-	stage('Build') {
-		sh 'mvn clean compile'
-	}
-	stage("Test"){
-		sh 'mvn test'
-		junit '**/target/surefire-reports/TEST-*.xml'
-	}
-	stage("Package"){
-		sh 'mvn package'
-	}
+pipeline {
+    agent { label 'master' }
+    tools {
+        maven 'maven363'
+    }
+    stages {
+        stage ('Checkout') {
+          steps {
+            git 'git@github.com:devopsepint2021/myProjectjava.git'
+          }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+        stage('Test'){
+            steps {
+                sh 'mvn test'
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
+        stage('Package') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+    }
 }
