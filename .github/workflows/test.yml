@@ -1,0 +1,12 @@
+name: testing github workflows
+on: push
+
+permissions: write-all
+jobs:
+    testing:
+      runs-on: ubuntu-latest
+      steps:
+        - name: testing bash script
+          run : |
+              echo "Hello world"
+
